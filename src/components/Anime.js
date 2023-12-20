@@ -29,20 +29,20 @@ function Anime() {
     type
   */ 
   return (
-    <div className="grid grid-cols-8 md:grid-cols-6 sm:grid-cols-4 place-items-center">
+    <div className="grid grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:gap-5 sm:gap-4 md:grid-cols-5 sm:grid-cols-4 content-center items-strech">
       {
         animeData?.results.map((res)=>{
           const {id,episode,type,title:{english,romaji},episodes,coverImage:{large}} = res
           console.log(res)
           return (
-            <div key={id} className="relative w-40">
-              <div className="absolute text-black">
+            <div key={id} className="text-gray-400  hover:text-gray-500">
+              <div className="absolute text-white bg-black">
                 {type}
               </div>
-              <img src={large} className="w-40 h-52" alt={english || romaji} />
+              <img src={large} className="lg:w-52 w-80 h-64 sm:w-60 lg:h-56" alt={english || romaji} />
               <div>{episode} | {episodes}</div>
-              <h2>{english || romaji}</h2>
-            </div>
+              <h2 className="text-ellipsis line-clamp-2">{english || romaji}</h2>
+            </div>  
           )
         })
       }
