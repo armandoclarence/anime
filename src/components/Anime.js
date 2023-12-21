@@ -23,7 +23,7 @@ function Anime() {
           const {id,episode,type,title:{english,romaji},episodes,coverImage:{large}} = res
           console.log(res)
           return (
-            <div key={id} className="group cursor-pointer hover:text-slate-700 transition ease-in duration-300 text-zinc-300">
+            <div key={id} id={id} className="cursor-pointer hover:text-slate-700 transition ease-in duration-300 text-zinc-300">
               <div className="absolute text-white bg-slate-700">
                 {type}
               </div>
