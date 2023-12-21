@@ -5,12 +5,15 @@ export const AnimeResponse = async ({ src, query = '' }) => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
     console.log(baseUrl)
 
-    const response = await axios.get(`${baseUrl}/${src}?${query}`);
-    const { results, page } = response.data;
+    const response = await axios.get(`${baseUrl}/${src}${query?`?${query}`: ''}`);
+    const { data } = response;
+    console.log(data)
+    console.log(response)
 
     return {
-      results: results,
-      page: page
+      results: data?.results,
+      page: data?.page,
+      streamData: data?.stream
     };
   } catch (e) {
     console.error(e);

@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Navigation from './components/Navigation';
 import Anime from './components/Anime';
+import AnimeDetail from './components/AnimeDetail';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
               <Route index element={
                 <Home>
                   <Anime />
+                  <AnimeDetail />
                 </Home>
                 }
               />
