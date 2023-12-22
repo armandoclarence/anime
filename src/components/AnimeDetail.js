@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { AnimeResponse } from '../api/AnimeResponse'
+import { useEffect, useState } from 'react';
+import { AnimeResponse } from '../api/AnimeResponse';
 
-function AnimeDetail() {
+function AnimeDetail({id}) {
   const [animeData, setAnimeData] = useState(null)
   useEffect(()=>{
-    const fetchData = async() =>{
-      try{
-        const {streamData} = await AnimeResponse({src:'stream/cowboy-bebop-episode-1'})
-        console.log(streamData)
-        const {multi:{main:{url}}} = streamData
-        setAnimeData({url})
+    const fetchData = async()=>{
+      try {
+        // Correct the usage of AnimeResponse and remove unnecessary destructuring
+        const anime = await AnimeResponse({ src: `info/${id}` });
+        console.log(anime);
+        setAnimeData(anime);
       } catch (error) {
-      console.error('Error fetching anime data:', error.message);
-    }
+        console.error('Error fetching anime data:', error);
+      }
     }
     fetchData()
-  },[])
+  },[id])
   return (
     <div>
       {
-        <video controls width="320" height="240">
-          <source src={animeData?.url}  type="application/x-mpegURL" />
-        </video>
+        animeData?.results.map(res=>{
+          console.log(res)
+        })
       }
     </div>
   )

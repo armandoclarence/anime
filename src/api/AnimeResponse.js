@@ -7,14 +7,10 @@ export const AnimeResponse = async ({ src, query = '' }) => {
 
     const response = await axios.get(`${baseUrl}/${src}${query?`?${query}`: ''}`);
     const { data } = response;
-    console.log(data)
-    console.log(response)
-
     return {
-      results: data?.results,
-      page: data?.page,
-      streamData: data?.stream
-    };
+      results : data?.results, 
+      streamData : data?.stream
+    }
   } catch (e) {
     console.error(e);
     // Handle errors if needed
