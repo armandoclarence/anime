@@ -1,6 +1,25 @@
-h2 {
-  font-size: 1.5rem;
+@tailwind base;
+.format::before {
+  content: attr(data-format);
+  background-color: #374151;
+  z-index: 2;
+  position: absolute;
+  top: 0;
 }
-h4 {
-  font-size: 0.75rem;
+@layer base{
+  h2 {
+    font-size: 1.5rem;
+  }
+  h4 {
+    font-size: 0.825rem;
+  }
+}
+
+.active {
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+.format\:p-2::before {
+  left: .75em;
 }

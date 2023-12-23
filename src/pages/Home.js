@@ -2,7 +2,7 @@ import React from 'react'
 
 function Home({children}) {
   return (
-    <div className="bg-stone-800 p-2">
+    <div className="bg-slate-950 p-2">
       {children}  
     </div>
   )

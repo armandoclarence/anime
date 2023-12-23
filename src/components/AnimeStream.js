@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { AnimeResponse } from '../api/AnimeResponse'
 import videojs from 'video.js';
 
-function AnimeStream() {
+function AnimeStream({id}) {
   useEffect(()=>{
     const fetchData = async() =>{
       let player = videojs('anime-video')
