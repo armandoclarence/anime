@@ -5,7 +5,7 @@ function Navigation() {
   return (
     <>
       <nav className='bg-blue-300'>
-        <ul className='flex items-center mx-3  gap-2'>
+        <ul className='flex items-center mx-3 gap-2'>
           <li className='hover:text-blue-500'>
             <NavLink to='/'>Home</NavLink>
           </li>

@@ -10,27 +10,32 @@ function Anime({fetchType,title,query}) {
     const fetchData = async () => {
       try {
         const { results:{results} } = await AnimeResponse({ src: fetchType, query: query });
-        setAnimeData({ results });
+        const episodeData = []
+        for (const {id} of results) {
+          const {results:{episodes}} = await AnimeResponse({src: `episode/${id}`})
+          episodeData.push(episodes[0])
+        }
+        setAnimeData({ results,episodeData });
       } catch (error) {
         console.error('Error fetching anime data:', error.message);
       }
     };
-    fetchData();
+    fetchData()
   },[fetchType, query])
   return (
     <div key={title}>
       <h2 className='text-zinc-300 flex justify-start'>{title}</h2>
       <div className='grid grid-cols-auto grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:grid-cols-5 sm:grid-cols-4 content-center items-strech'>
         {
-          animeData?.results.map((res)=>{
+          animeData?.results.map((res,i)=>{
+            const idEpisode = animeData?.episodeData[i]
             const {id,format,rating,malId,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode,genres,status,averageScore,description,releaseDate,seasonYear} = res
             const statusText = (status || 'RELEASING').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
             const createMarkup = (content) => {
               return { __html: content };
             };
-            console.log(res)
             return (
-              <div onClick={()=> navigate(`anime/${id}`)} key={malId ||episode} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
+              <div onClick={()=> navigate(`anime/${id}/${idEpisode.id}`)} key={malId ||episode} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
                 <div className='overflow-clip'>
                   <img src={large} className='object-cover transition group-hover:scale-105 lg:w-52 w-80 h-64 sm:w-60 lg:h-56' alt={english || romaji} />
                 </div>

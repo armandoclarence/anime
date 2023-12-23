@@ -20,8 +20,8 @@ function App() {
               }
             />
             <Route path='about' element={<About/>}/>
-            <Route path='anime/:id' element={<AnimeDetail/>}>
-              <Route path=':ep'></Route>
+            <Route path='anime/:id'>
+              <Route path=':ep' element={<AnimeDetail/>} />
             </Route>
           </Routes>
       </Router>
