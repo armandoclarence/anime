@@ -420,12 +420,47 @@ video {
 .absolute {
   position: absolute;
 }
+<<<<<<< HEAD
 .z-30 {
   z-index: 30;
+=======
+.relative {
+  position: relative;
+}
+.left-0 {
+  left: 0px;
+}
+.top-0 {
+  top: 0px;
+}
+.left-52 {
+  left: 13rem;
+}
+.left-48 {
+  left: 12rem;
+}
+.left-44 {
+  left: 11rem;
+}
+.left-2 {
+  left: 0.5rem;
+}
+.isolate {
+  isolation: isolate;
+>>>>>>> e7e6e6a (adding hover image and make anime detail js)
 }
 .z-10 {
   z-index: 10;
 }
+<<<<<<< HEAD
+=======
+.z-20 {
+  z-index: 20;
+}
+.z-30 {
+  z-index: 30;
+}
+>>>>>>> e7e6e6a (adding hover image and make anime detail js)
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -436,23 +471,68 @@ video {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
 .flex {
   display: flex;
 }
 .grid {
   display: grid;
 }
+.hidden {
+  display: none;
+}
 .h-64 {
   height: 16rem;
 }
+.h-28 {
+  height: 7rem;
+}
+.h-40 {
+  height: 10rem;
+}
+.h-60 {
+  height: 15rem;
+}
 .w-80 {
   width: 20rem;
+}
+.w-32 {
+  width: 8rem;
+}
+.w-44 {
+  width: 11rem;
+}
+.w-64 {
+  width: 16rem;
+}
+.flex-grow {
+  flex-grow: 1;
 }
 .cursor-pointer {
   cursor: pointer;
 }
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-subgrid {
+  grid-template-columns: subgrid;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-col {
+  flex-direction: column;
 }
 .content-center {
   align-content: center;
@@ -469,11 +549,31 @@ video {
 .gap-2 {
   gap: 0.5rem;
 }
+<<<<<<< HEAD
 .overflow-clip {
   overflow: clip;
 }
+=======
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-clip {
+  overflow: clip;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+>>>>>>> e7e6e6a (adding hover image and make anime detail js)
 .text-ellipsis {
   text-overflow: ellipsis;
+}
+.text-wrap {
+  text-wrap: wrap;
+}
+.text-nowrap {
+  text-wrap: nowrap;
 }
 .bg-blue-300 {
   --tw-bg-opacity: 1;
@@ -495,8 +595,27 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(63 63 70 / var(--tw-bg-opacity));
 }
+.bg-slate-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
 .p-2 {
   padding: 0.5rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.px-2\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+.text-center {
+  text-align: center;
 }
 .text-slate-200 {
   --tw-text-opacity: 1;
@@ -526,6 +645,7 @@ video {
 
 /* Your custom styles go here */
 
+<<<<<<< HEAD
 .hover\:scale-125:hover {
   --tw-scale-x: 1.25;
   --tw-scale-y: 1.25;
@@ -548,6 +668,14 @@ video {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+=======
+.hover\:isolation-auto:hover {
+  isolation: auto;
+}
+
+.hover\:grid:hover {
+  display: grid;
+>>>>>>> e7e6e6a (adding hover image and make anime detail js)
 }
 
 .hover\:text-blue-500:hover {
@@ -555,16 +683,18 @@ video {
   color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
-.hover\:text-slate-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(100 116 139 / var(--tw-text-opacity));
-}
-
 .hover\:text-slate-700:hover {
   --tw-text-opacity: 1;
   color: rgb(51 65 85 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
+=======
+.group:hover .group-hover\:grid {
+  display: grid;
+}
+
+>>>>>>> e7e6e6a (adding hover image and make anime detail js)
 .group:hover .group-hover\:scale-105 {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
