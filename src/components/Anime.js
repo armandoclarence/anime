@@ -22,11 +22,6 @@ function Anime({fetchType,title,query}) {
       <div className="grid grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:gap-5 sm:gap-4 md:grid-cols-5 sm:grid-cols-4 content-center items-strech">
         {
           animeData?.results.map((res)=>{
-<<<<<<< HEAD
-            const {id,malId,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode,genres} = res
-            return (
-              <div key={malId ||episode} className="cursor-pointer group hover:text-slate-700 transition ease-in duration-300 text-zinc-300">
-=======
             const {id,rating,malId,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode,genres,meanScore,description,releaseDate} = res
             const createMarkup = (content) => {
               return { __html: content };
@@ -34,7 +29,6 @@ function Anime({fetchType,title,query}) {
             console.log(res)
             return (
               <div key={malId ||episode} className="relative cursor-pointer group transition ease-in duration-300 text-zinc-300">
->>>>>>> e7e6e6a (adding hover image and make anime detail js)
                 <div className="absolute z-10 text-white bg-slate-700">
                   {type}
                 </div>
@@ -52,9 +46,6 @@ function Anime({fetchType,title,query}) {
                     {episodes || nextAiringEpisode?.episode}
                   </div>
                 </div>
-<<<<<<< HEAD
-                <h3 className="text-slate-200 group-hover:text-slate-500 text-ellipsis line-clamp-2">{english || romaji}</h3>
-=======
                 <h3 className="text-slate-200 text-center group-hover:text-slate-500 text-ellipsis line-clamp-2">{english || romaji}</h3>
                 <div className="grid group-hover:grid grid-cols-auto bg-gray-800 absolute left-44 z-20 w-64 h-60 top-0">
                   <div className="relative px-2.5 ">
@@ -85,7 +76,6 @@ function Anime({fetchType,title,query}) {
                     <p>Year: {releaseDate}</p>
                   </div>
                 </div>
->>>>>>> e7e6e6a (adding hover image and make anime detail js)
               </div>  
             )
           })
