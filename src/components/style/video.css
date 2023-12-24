@@ -1,0 +1,20 @@
+.vjs-big-play-button, .vjs-controls-disabled .vjs-control-bar {
+  display: block !important;
+}
+
+.vjs-big-play-button .vjs-control-text::before {
+  content: '>';
+  display: block;
+
+}
+
+.vjs-controls-disabled .vjs-control-bar {
+  position: absolute;
+  top: 0;
+  left: 20em;
+}
+
+.vjs-control-bar .vjs-play-control .vjs-control-text {
+  content: 'id';
+  display: block;
+}

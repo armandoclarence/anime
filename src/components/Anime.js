@@ -10,11 +10,11 @@ function Anime({fetchType,title,query}) {
     const fetchData = async () => {
       try {
         const { results:{results} } = await AnimeResponse({ src: fetchType, query: query });
-        const episodeData = []
-        for (const {id} of results) {
-          const {results:{episodes}} = await AnimeResponse({src: `episode/${id}`})
-          episodeData.push(episodes[0])
-        }
+        const episodePromises = results.map(async ({ id }) => {
+          const { results: { episodes } } = await AnimeResponse({ src: `episode/${id}` });
+          return episodes[0];
+        });
+        const episodeData = await Promise.all(episodePromises)
         setAnimeData({ results,episodeData });
       } catch (error) {
         console.error('Error fetching anime data:', error.message);
@@ -23,9 +23,9 @@ function Anime({fetchType,title,query}) {
     fetchData()
   },[fetchType, query])
   return (
-    <div key={title}>
-      <h2 className='text-zinc-300 flex justify-start'>{title}</h2>
-      <div className='grid grid-cols-auto grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:grid-cols-5 sm:grid-cols-4 content-center items-strech'>
+    <div>
+      <h2 key={title} className='text-zinc-300 flex justify-start'>{title}</h2>
+      <div key='cards' className='grid grid-cols-auto grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:grid-cols-5 sm:grid-cols-4 content-center items-strech'>
         {
           animeData?.results.map((res,i)=>{
             const idEpisode = animeData?.episodeData[i]

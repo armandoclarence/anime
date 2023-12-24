@@ -3,8 +3,9 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import Home from './pages/Home';
 import About from './pages/About';
 import Navbar from './components/Navbar';
-import Anime from './components/Anime';
 import AnimeDetail from './pages/AnimeDetail';
+import React from 'react';
+const LazyAnime = React.lazy(()=> import('./components/Anime'))
 
 function App() {
   return (
@@ -13,16 +14,16 @@ function App() {
           <Routes>
             <Route index element={
               <Home>
-                <Anime fetchType='schedule' title='Scheduled Anime' query='p=1&limit=14'/>
-                <Anime fetchType='popular' title='Popular Anime' query='p=1&limit=7'/>
-                <Anime fetchType='trending' title='Trending Anime' query='p=1&limit=7'/>
+                <React.Suspense fallback='Loading ...'>
+                  <LazyAnime fetchType='schedule' title='Scheduled Anime' query='p=1&limit=14'/>
+                  <LazyAnime fetchType='popular' title='Popular Anime' query='p=1&limit=7'/>
+                  <LazyAnime fetchType='trending' title='Trending Anime' query='p=1&limit=7'/>
+                </React.Suspense>
               </Home>
               }
             />
             <Route path='about' element={<About/>}/>
-            <Route path='anime/:id'>
-              <Route path=':ep' element={<AnimeDetail/>} />
-            </Route>
+            <Route path='anime/:id/:ep' element={<AnimeDetail/>} />
           </Routes>
       </Router>
   );
