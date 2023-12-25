@@ -16,6 +16,8 @@ function AnimeStream({id}) {
           src: url,
           type: 'application/x-mpegURL', 
         });
+        player.pause();
+        player.aspectRatio("4:3")
       } catch (error) {
         console.error('Error fetching anime data:', error.message);
       return () => {
@@ -28,8 +30,7 @@ function AnimeStream({id}) {
   return (
     <div>
       {
-        <video id='anime-video' width="320" height="240"
-        />
+        <video id='anime-video' preload="auto"/>
       }
     </div>
   )

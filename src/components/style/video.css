@@ -2,19 +2,50 @@
   display: block !important;
 }
 
-.vjs-big-play-button .vjs-control-text::before {
-  content: '>';
-  display: block;
-
+#anime-video {
+  position: relative;
+  padding: 0;
+}
+video {
+  height: inherit;
 }
 
 .vjs-controls-disabled .vjs-control-bar {
   position: absolute;
-  top: 0;
-  left: 20em;
+  inset: 0;
 }
 
-.vjs-control-bar .vjs-play-control .vjs-control-text {
-  content: 'id';
-  display: block;
+.vjs-big-play-button::after {
+  content: "\25B6 Watch";
+  color: white;
+  background-color: black;
+  visibility: visible;
+  width: 20%;
+  margin: auto;
+  height: 2.5rem;
+  border: 1px solid;
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  position: absolute;
+  transition: scale .3s ease-in;
+}
+
+.vjs-big-play-button:hover::after {
+  border-color: rgb(74, 74, 247);
+  color: rgb(74, 74, 247);
+  scale: 1.05;
+} 
+
+.vjs-play-control {
+  position: absolute;
+  bottom: 0;
+  
+}
+
+.vjs-big-play-button .vjs-control-text {
+  display: none;
 }
