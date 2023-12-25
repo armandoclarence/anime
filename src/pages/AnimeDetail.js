@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AnimeResponse } from '../api/AnimeResponse'
+import AnimeRecommend from '../components/AnimeRecommend'
 import AnimeStream from '../components/AnimeStream'
 import ButtonEpisode from '../components/ButtonEpisode'
 
@@ -16,7 +17,6 @@ function AnimeDetail() {
       const infoAnime = await AnimeResponse({src:`info/${id}`})
       const episodeAnime = await AnimeResponse({src:`episode/${id}`})
       const recommendations = await AnimeResponse({src: `recommendations/${id}`})
-      console.log(episodeAnime)
       setAnimeRecommend({recommendAnime: recommendations?.results})
       setAnimeData({infoAnime: infoAnime.results})
       setAnimeEpisode({episodeAnime: episodeAnime.results})
@@ -30,7 +30,10 @@ function AnimeDetail() {
   console.log(animeRecommend?.recommendAnime)
   return (
     <>
-      <AnimeStream id={ep} />
+      <div className='flex overflow-x-clip'>
+        <AnimeStream id={ep} />
+        <AnimeRecommend recommend={animeRecommend?.recommendAnime?.results} />
+      </div>
       {
         animeEpisode?.episodeAnime?.episodes.map(({id,number})=>{
           return <ButtonEpisode key={id} id={id} number={number} />

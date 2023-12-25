@@ -5,14 +5,50 @@
 #anime-video {
   position: relative;
   padding: 0;
+  width: 80%;
+  height: 90%;
 }
 video {
   height: inherit;
+  width: 100%;
 }
 
 .vjs-controls-disabled .vjs-control-bar {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  justify-content: right;
+  display: flex!important;
+  color: white;
+  background: rgb(42, 42, 202);
+}
+
+.vjs-play-control.vjs-paused::after {
+  content: "\25B6";
+  color: white;
+  visibility: visible;
+  margin: auto;
+}
+
+.vjs-play-control.vjs-playing::after {
+  content: "\23F8";
+  color: white;
+  background-color: initial;
+  visibility: visible;
+  margin:auto;
+}
+
+.vjs-mouse-display {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  bottom: 0;
+  color: gray;
+}
+
+.vjs-time-tooltip {
+  position: absolute;
 }
 
 .vjs-big-play-button::after {
@@ -43,9 +79,9 @@ video {
 .vjs-play-control {
   position: absolute;
   bottom: 0;
-  
+  left: 0;
 }
 
-.vjs-big-play-button .vjs-control-text {
+.vjs-control-text {
   display: none;
 }

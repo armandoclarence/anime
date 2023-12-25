@@ -28,11 +28,11 @@ function AnimeStream({id}) {
     fetchData()
   },[id])
   return (
-    <div>
+    <>
       {
-        <video id='anime-video' preload="auto"/>
+        <video id='anime-video' height='480' width='720' preload='auto'/>
       }
-    </div>
+    </>
   )
 }
 
