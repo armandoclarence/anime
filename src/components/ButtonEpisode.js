@@ -1,14 +1,10 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams,NavLink } from 'react-router-dom'
 
 function ButtonEpisode({id,number}) {
-  const navigate = useNavigate()
   const params = useParams()
-  const handleRoute = (id) =>{
-    navigate(`/anime/${params.id}/${id}`);
-  }
   return (
-    <button onClick={()=> handleRoute(id)} id={id} className='ml-2'>{number}</button>
+    <NavLink to={`/anime/${params.id}/${id}`} id={id} className='flex justify-center px-6 border border-zinc-300 border-solid'>{number}</NavLink>
   )
 }
 

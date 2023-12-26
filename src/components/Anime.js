@@ -12,6 +12,7 @@ function Anime({fetchType,title,query}) {
         const { results:{results} } = await AnimeResponse({ src: fetchType, query: query });
         const episodePromises = results.map(async ({ id }) => {
           const { results: { episodes } } = await AnimeResponse({ src: `episode/${id}` });
+          console.log(episodes[0])
           return episodes[0];
         });
         const episodeData = await Promise.all(episodePromises)
