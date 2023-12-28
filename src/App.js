@@ -5,6 +5,7 @@ import About from './pages/About';
 import Navbar from './components/Navbar';
 import AnimeDetail from './pages/AnimeDetail';
 import React from 'react';
+import NotFound from './pages/NotFound';
 const LazyAnime = React.lazy(()=> import('./components/Anime'))
 
 function App() {
@@ -23,7 +24,10 @@ function App() {
               }
             />
             <Route path='about' element={<About/>}/>
-            <Route path='anime/:id/:ep' element={<AnimeDetail/>} />
+            <Route path='anime/:id' element={<AnimeDetail/>}>
+              <Route path=':ep' element={<AnimeDetail/>} />
+            </Route>
+            <Route path='*' element={<NotFound/>} />
           </Routes>
       </Router>
   );

@@ -10,14 +10,12 @@ function AnimeStream({id}) {
       let player = videojs('anime-video')
       try{
         const {streamData} = await AnimeResponse({src:`stream/${id}`})
-        console.log(streamData)
         const {multi:{main:{url}}} = streamData
         player.src({
           src: url,
           type: 'application/x-mpegURL', 
         });
         player.pause();
-        player.aspectRatio("4:3")
       } catch (error) {
         console.error('Error fetching anime data:', error.message);
       return () => {

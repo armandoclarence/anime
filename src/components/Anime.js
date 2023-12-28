@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { LiaClosedCaptioning, LiaStar } from 'react-icons/lia';
 import { AnimeResponse } from '../api/AnimeResponse'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Anime({fetchType,title,query}) {
   const [animeData, setAnimeData] = useState(null)
-  const navigate = useNavigate()
   useEffect(()=>{
     const fetchData = async () => {
       try {
         const { results:{results} } = await AnimeResponse({ src: fetchType, query: query });
-        const episodePromises = results.map(async ({ id }) => {
-          const { results: { episodes } } = await AnimeResponse({ src: `episode/${id}` });
-          console.log(episodes[0])
-          return episodes[0];
-        });
-        const episodeData = await Promise.all(episodePromises)
-        setAnimeData({ results,episodeData });
+        setAnimeData({ results });
       } catch (error) {
         console.error('Error fetching anime data:', error.message);
       }
@@ -25,18 +18,17 @@ function Anime({fetchType,title,query}) {
   },[fetchType, query])
   return (
     <div>
-      <h2 key={title} className='text-zinc-300 flex justify-start'>{title}</h2>
+      <h2 className='text-zinc-300 flex justify-start'>{title}</h2>
       <div key='cards' className='grid grid-cols-auto grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:grid-cols-5 sm:grid-cols-4 content-center items-strech'>
         {
           animeData?.results.map((res,i)=>{
-            const idEpisode = animeData?.episodeData[i]
             const {id,format,rating,malId,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode,genres,status,averageScore,description,releaseDate,seasonYear} = res
             const statusText = (status || 'RELEASING').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
             const createMarkup = (content) => {
               return { __html: content };
             };
             return (
-              <div onClick={()=> navigate(`anime/${id}/${idEpisode.id}`)} key={malId ||episode} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
+              <Link to={`anime/${id}`} key={malId ||episode} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
                 <div className='overflow-clip'>
                   <img src={large} className='object-cover transition group-hover:scale-105 lg:w-52 w-80 h-64 sm:w-60 lg:h-56' alt={english || romaji} />
                 </div>
@@ -81,7 +73,7 @@ function Anime({fetchType,title,query}) {
                   <p className='text-sm'>Status: {statusText || 'RELEASING'}</p>
                   <p className='text-sm flex flex-wrap'>Genre: {genres.join(',')}</p>
                 </div>
-              </div>  
+              </Link>  
             )
           })
         }

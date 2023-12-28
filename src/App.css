@@ -20,6 +20,10 @@
   font-weight: bold;
 }
 
+.active[id] {
+  background: white;
+}
+
 .format\:p-2::before {
   left: .75em;
 }
