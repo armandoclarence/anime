@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { LiaClosedCaptioning, LiaStar } from 'react-icons/lia';
 import { AnimeResponse } from '../api/AnimeResponse'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Anime({fetchType,title,query}) {
   const [animeData, setAnimeData] = useState(null)
+  const location = useLocation()
+  console.log(location)
   useEffect(()=>{
     const fetchData = async () => {
       try {
@@ -17,18 +19,23 @@ function Anime({fetchType,title,query}) {
     fetchData()
   },[fetchType, query])
   return (
-    <div>
-      <h2 className='text-zinc-300 flex justify-start'>{title}</h2>
+    <div className='p-4'>
+      <div className='flex justify-between text-zinc-300' key='nav'>
+        <h2>{title}</h2>
+        {
+          location.pathname === '/' && <Link to={fetchType}>View All</Link>
+        }
+      </div>
       <div key='cards' className='grid grid-cols-auto grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:grid-cols-5 sm:grid-cols-4 content-center items-strech'>
         {
           animeData?.results.map((res,i)=>{
-            const {id,format,rating,malId,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode,genres,status,averageScore,description,releaseDate,seasonYear} = res
+            const {id,format,rating,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode,genres,status,averageScore,description,releaseDate,seasonYear} = res
             const statusText = (status || 'RELEASING').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
             const createMarkup = (content) => {
               return { __html: content };
             };
             return (
-              <Link to={`anime/${id}`} key={malId ||episode} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
+              <Link to={`../anime/${id}`} key={i} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
                 <div className='overflow-clip'>
                   <img src={large} className='object-cover transition group-hover:scale-105 lg:w-52 w-80 h-64 sm:w-60 lg:h-56' alt={english || romaji} />
                 </div>

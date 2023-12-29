@@ -463,11 +463,11 @@ video {
 .h-64 {
   height: 16rem;
 }
-.w-80 {
-  width: 20rem;
-}
 .w-3\/4 {
   width: 75%;
+}
+.w-80 {
+  width: 20rem;
 }
 .cursor-pointer {
   cursor: pointer;
@@ -492,9 +492,6 @@ video {
 }
 .items-center {
   align-items: center;
-}
-.justify-start {
-  justify-content: flex-start;
 }
 .justify-center {
   justify-content: center;
@@ -562,6 +559,9 @@ video {
 .p-2 {
   padding: 0.5rem;
 }
+.p-4 {
+  padding: 1rem;
+}
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -569,6 +569,18 @@ video {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 .pb-4 {
   padding-bottom: 1rem;
@@ -615,6 +627,11 @@ video {
 /* Your custom styles go here */
 
 .hover\:text-blue-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
+}
+
+.\*\:hover\:text-blue-500:hover > * {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
 }

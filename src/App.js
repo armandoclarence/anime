@@ -6,6 +6,10 @@ import Navbar from './components/Navbar';
 import AnimeDetail from './pages/AnimeDetail';
 import React from 'react';
 import NotFound from './pages/NotFound';
+import Trending from './pages/Trending';
+import Footer from './components/Footer';
+import Popular from './pages/Popular';
+import Schedule from './pages/Schedule';
 const LazyAnime = React.lazy(()=> import('./components/Anime'))
 
 function App() {
@@ -27,8 +31,30 @@ function App() {
             <Route path='anime/:id' element={<AnimeDetail/>}>
               <Route path=':ep' element={<AnimeDetail/>} />
             </Route>
+            <Route path='trending' element={
+              <Trending>
+                <React.Suspense fallback='Loading ...'>
+                  <LazyAnime fetchType='trending' title='Trending Anime' query='p=1&limit=20'/>
+                </React.Suspense>
+              </Trending>
+            } />
+            <Route path='popular' element={
+              <Popular>
+                <React.Suspense fallback='Loading ...'>
+                  <LazyAnime fetchType='popular' title='Popular Anime' query='p=1&limit=20'/>
+                </React.Suspense>
+              </Popular>
+            } />
+            <Route path='schedule' element={
+              <Schedule>
+                <React.Suspense fallback='Loading ...'>
+                  <LazyAnime fetchType='schedule' title='Schedule Anime' query='p=1&limit=20'/>
+                </React.Suspense>
+              </Schedule>
+            } />
             <Route path='*' element={<NotFound/>} />
           </Routes>
+          <Footer/>
       </Router>
   );
 }

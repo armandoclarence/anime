@@ -1,20 +1,33 @@
 import React from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Navigation() {
   return (
     <>
-      <nav className='bg-blue-300'>
-        <ul className='flex items-center mx-3 gap-2'>
-          <li className='hover:text-blue-500'>
-            <NavLink to='/'>Home</NavLink>
-          </li>
-          <li className='hover:text-blue-500'>
-            <NavLink to='/about'>About Us</NavLink>
-          </li>
-        </ul>
-      </nav>
-      <Outlet />
+      <header className='flex px-3 bg-blue-300 justify-between items-center'>
+        <h2>
+          ANILIST Unofficial
+        </h2>
+        <nav>
+          <ul className='flex items-center mx-3 gap-2'>
+            <li className='hover:text-blue-500'>
+              <NavLink to='/'>Home</NavLink>
+            </li>
+            <li className='hover:text-blue-500'>
+              <NavLink to='/about'>About Us</NavLink>
+            </li>
+            <li className='hover:text-blue-500'>
+              <NavLink to='/trending'>Trending</NavLink>
+            </li>
+            <li className='hover:text-blue-500'>
+              <NavLink to='/popular'>Popular</NavLink>
+            </li>
+            <li className='hover:text-blue-500'>
+              <NavLink to='/schedule'>Schedule</NavLink>
+            </li>
+          </ul>
+        </nav> 
+      </header>
     </>
   );
 }

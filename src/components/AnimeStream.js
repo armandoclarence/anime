@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import { AnimeResponse } from '../api/AnimeResponse'
-import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 import './style/video.css'
+import videojs from 'video.js'
 
 function AnimeStream({id}) {
   useEffect(()=>{
     const fetchData = async() =>{
       let player = videojs('anime-video')
       try{
-        const {streamData} = await AnimeResponse({src:`stream/${id}`})
+        if(id === undefined) return
+        const {streamData} = await AnimeResponse({src:`stream/`,id})
         const {multi:{main:{url}}} = streamData
         player.src({
           src: url,

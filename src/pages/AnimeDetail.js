@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { AnimeResponse } from '../api/AnimeResponse'
 import AnimeRecommend from '../components/AnimeRecommend'
 import AnimeStream from '../components/AnimeStream'
@@ -13,32 +13,19 @@ function AnimeDetail() {
   const [animeRecommend, setAnimeRecommend] = useState(null)
   useEffect(()=>{
     const fetchData = async() =>{
-      const episodeAnime = await AnimeResponse({src:`episode/${id}`})
-      navigate(episodeAnime.results.episodes[0].id)
-      const infoAnime = await AnimeResponse({src:`info/${id}`})
-      const recommendations = await AnimeResponse({src: `recommendations/${id}`})
+      const episodeAnime = await AnimeResponse({src:'episode/',id})
+      if(ep === undefined) navigate(episodeAnime.results.episodes[0].id)
+      const infoAnime = await AnimeResponse({src:'info/',id})
+      const recommendations = await AnimeResponse({src: 'recommendations/',id})
       setAnimeRecommend({recommendAnime: recommendations?.results?.results})
       setAnimeData({infoAnime: infoAnime?.results})
       setAnimeEpisode({episodeAnime: episodeAnime?.results.episodes})
     }
     fetchData()
-  },[id,navigate])
-  console.log(animeRecommend)
- 
-  /*
-    coverImage:large
-    description
-    duration
-    episodes
-    format
-    genres
-    score:decimalScore
-    studios
-    title:english,romaji
-    year
-  */ 
- const createMarkup = (content) => {
-   return { __html: content };
+  },[id,navigate,ep])
+  console.log(animeData.infoAnime)
+  const createMarkup = (content) => {
+    return { __html: content };
   };
   return (
     <>
