@@ -6,7 +6,6 @@ import { Link, useLocation } from 'react-router-dom';
 function Anime({fetchType,title,query}) {
   const [animeData, setAnimeData] = useState(null)
   const location = useLocation()
-  console.log(location)
   useEffect(()=>{
     const fetchData = async () => {
       try {

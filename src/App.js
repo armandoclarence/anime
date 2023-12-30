@@ -10,6 +10,7 @@ import Trending from './pages/Trending';
 import Footer from './components/Footer';
 import Popular from './pages/Popular';
 import Schedule from './pages/Schedule';
+import AnimeFilter from './pages/AnimeFilter';
 const LazyAnime = React.lazy(()=> import('./components/Anime'))
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
                 </React.Suspense>
               </Schedule>
             } />
+            <Route path='filter' element={<AnimeFilter/>} />
             <Route path='*' element={<NotFound/>} />
           </Routes>
           <Footer/>

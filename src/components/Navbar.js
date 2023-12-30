@@ -25,6 +25,9 @@ function Navigation() {
             <li className='hover:text-blue-500'>
               <NavLink to='/schedule'>Schedule</NavLink>
             </li>
+            <li className='hover:text-blue-500'>
+              <NavLink to='/filter'>Filter</NavLink>
+            </li>
           </ul>
         </nav> 
       </header>

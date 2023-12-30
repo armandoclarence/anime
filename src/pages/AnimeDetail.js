@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AnimeResponse } from '../api/AnimeResponse'
 import AnimeRecommend from '../components/AnimeRecommend'
 import AnimeStream from '../components/AnimeStream'
@@ -23,7 +23,6 @@ function AnimeDetail() {
     }
     fetchData()
   },[id,navigate,ep])
-  console.log(animeData.infoAnime)
   const createMarkup = (content) => {
     return { __html: content };
   };
