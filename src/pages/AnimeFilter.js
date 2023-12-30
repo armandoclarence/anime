@@ -3,19 +3,26 @@ import { useSearchParams } from 'react-router-dom'
 import { AnimeSearch } from '../api/AnimeSearch'
 
 function AnimeFilter() {
-  const [params,setParams] = useSearchParams()
+  const [searchParams,setSearchParams] = useSearchParams()
   const [animeData,setAnimeData] = useState([])
   useEffect(()=>{
     const fetchData = async() =>{
-      const {results} = await AnimeSearch(params)
-      setAnimeData({results})
+      const {results,pageInfo} = await AnimeSearch(searchParams)
+      setAnimeData({results,pageInfo})
     }
     fetchData()
-  },[params])
-  console.log(animeData?.results)
+  },[searchParams])
   return (
     <div className='text-zinc-300'>
       <h3>Filter Anime</h3>
+      <input type="text" placeholder="Search Anime..." value={searchParams.get('keyword') || ''} onChange={(e)=> setSearchParams({keyword: e.target.value})} />
+      <div className="grid">
+        {
+          // animeData?.results.map(res=>{
+          //   console.log(res)
+          // })
+        }
+      </div>
     </div>
   )
 }

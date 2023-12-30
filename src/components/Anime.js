@@ -9,7 +9,7 @@ function Anime({fetchType,title,query}) {
   useEffect(()=>{
     const fetchData = async () => {
       try {
-        const { results:{results} } = await AnimeResponse({ src: fetchType, query: query });
+        const { results } = await AnimeResponse({ src: fetchType, query: query });
         setAnimeData({ results });
       } catch (error) {
         console.error('Error fetching anime data:', error.message);
