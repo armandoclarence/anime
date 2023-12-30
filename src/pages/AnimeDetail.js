@@ -14,12 +14,13 @@ function AnimeDetail() {
   useEffect(()=>{
     const fetchData = async() =>{
       const episodeAnime = await AnimeResponse({src:'episode/',id})
-      if(ep === undefined) navigate(episodeAnime.results.episodes[0].id)
+      if(ep === undefined) navigate(episodeAnime.episodes[0].id)
       const infoAnime = await AnimeResponse({src:'info/',id})
       const recommendations = await AnimeResponse({src: 'recommendations/',id})
-      setAnimeRecommend({recommendAnime: recommendations?.results?.results})
-      setAnimeData({infoAnime: infoAnime?.results})
-      setAnimeEpisode({episodeAnime: episodeAnime?.results.episodes})
+      console.log(episodeAnime)
+      setAnimeRecommend({recommendAnime: recommendations?.results})
+      setAnimeData({infoAnime: infoAnime?.infoAnime})
+      setAnimeEpisode({episodeAnime: episodeAnime?.episodes})
     }
     fetchData()
   },[id,navigate,ep])

@@ -2,15 +2,18 @@ import axios from "axios";
 
 export const AnimeResponse = async ({ src,id = '', query = '' }) => {
   try {
-    console.log(src, id)
     if(id === undefined) return
     const baseUrl = process.env.REACT_APP_BASE_URL;
 
     const response = await axios.get(`${baseUrl}/${src}${id}${query?`?${query}`: ''}`);
-    const { data } = response;
+    const {data} = response
+    const {results,episodes,page,stream,pageInfo} = data;
     return {
-      results : data, 
-      streamData : data?.stream
+      infoAnime : data,
+      results : results,
+      episodes : episodes, 
+      streamData : stream,
+      pageInfo : page || pageInfo
     }
   } catch (e) {
     console.error(e);
