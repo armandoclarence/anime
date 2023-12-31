@@ -8,9 +8,9 @@ export const AnimeSearch = async ( search ) => {
     const season = search.get("season") || ''
     const isAdult = search.get("isAdult") || ''
     const format = search.get("format") || ''
-    const genres = (search.get("genres").split(',') || '') ? search.get("genres").split(',') :search.get("genres")
-    // const tags = search.get("tags").split(',') ? search.get("tags").split(',') : search.get("tags")
-    // const sort = search.get("sort").split(',') ? search.get("sort").split(',') : search.get("sort")
+    const genres = (search.get("genres") || '') ? search.get("genres").split(',') : null
+    const tags = (search.get("tags") || '') ? search.get("tags").split(',') : null
+    const sort = (search.get("sort") || '') ? search.get("sort").split(',') : null
     const requestData = {
       type: "ANIME",
       search: title,
@@ -19,8 +19,8 @@ export const AnimeSearch = async ( search ) => {
       isAdult: isAdult,
       format: format,
       genres: genres,
-      // tags: tags,
-      // sort: sort
+      tags: tags,
+      sort: sort
     }
     const filteredRequestData = Object.fromEntries(
       Object.entries(requestData).filter(([_, value]) => value !== "" && value !== null)
@@ -28,8 +28,8 @@ export const AnimeSearch = async ( search ) => {
     console.log(filteredRequestData)
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const response = await axios.post(`${baseUrl}/search`,filteredRequestData);
-    console.log(response)
     const { data:{pageInfo,results} } = response;
+    console.log(pageInfo,results)
     return {
       pageInfo: pageInfo,
       results: results
