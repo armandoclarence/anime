@@ -17,7 +17,6 @@ function AnimeDetail() {
       if(ep === undefined) navigate(episodeAnime.episodes[0].id)
       const infoAnime = await AnimeResponse({src:'info/',id})
       const recommendations = await AnimeResponse({src: 'recommendations/',id})
-      console.log(episodeAnime)
       setAnimeRecommend({recommendAnime: recommendations?.results})
       setAnimeData({infoAnime: infoAnime?.infoAnime})
       setAnimeEpisode({episodeAnime: episodeAnime?.episodes})

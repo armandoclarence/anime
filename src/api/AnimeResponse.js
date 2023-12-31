@@ -8,10 +8,17 @@ export const AnimeResponse = async ({ src,id = '', query = '' }) => {
     const response = await axios.get(`${baseUrl}/${src}${id}${query?`?${query}`: ''}`);
     const {data} = response
     const {results,episodes,page,stream,pageInfo} = data;
+    if(src === 'episode/') {
+      return {
+        episodes: episodes
+      }
+    }if(src === 'info/') {
+      return {
+        infoAnime: data
+      }
+    }
     return {
-      infoAnime : data,
       results : results,
-      episodes : episodes, 
       streamData : stream,
       pageInfo : page || pageInfo
     }
