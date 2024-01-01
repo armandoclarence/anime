@@ -10,8 +10,8 @@ function Anime({fetchType,title,query,data}) {
   useEffect(()=>{
     const fetchData = async () => {
       try {
-        if(fetchType === 'search') setAnimeData({results : data})
-        else {
+        if(fetchType === 'search') setAnimeData({results: data})
+        else{
           const { results } = await AnimeResponse({ src: fetchType, query: query });
           setAnimeData({ results });
         }
