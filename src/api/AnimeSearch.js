@@ -20,14 +20,13 @@ export const AnimeSearch = async ( search ) => {
       format: format,
       genres: genres,
       tags: tags,
-      sort: sort
+      sort: sort,
     }
     const filteredRequestData = Object.fromEntries(
       Object.entries(requestData).filter(([_, value]) => value !== "" && value !== null)
     );
-    console.log(filteredRequestData)
     const baseUrl = process.env.REACT_APP_BASE_URL;
-    const response = await axios.post(`${baseUrl}/search`,filteredRequestData);
+    const response = await axios.post(`${baseUrl}/search?limit=28`,filteredRequestData);
     const { data:{pageInfo,results} } = response;
     console.log(pageInfo,results)
     return {

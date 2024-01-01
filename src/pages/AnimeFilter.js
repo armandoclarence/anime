@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { AnimeSearch } from '../api/AnimeSearch'
+import Anime from '../components/Anime'
 import {genres,years,season,country,format,status,sort} from '../data/arrayAnime'
 
 function AnimeFilter() {
@@ -94,13 +95,7 @@ function AnimeFilter() {
           <button className='h-8'>Filter</button>
         </li>
       </ul>
-      <div className="grid">
-        {
-          // animeData?.results.map(res=>{
-          //   console.log(res)
-          // })
-        }
-      </div>
+      <Anime fetchType='search' data={animeData} />
     </div>
   )
 }

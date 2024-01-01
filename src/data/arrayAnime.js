@@ -65,7 +65,9 @@ const season = [
 
 const country = [
   "JP",
-  "CN"
+  "CN",
+  "KR",
+  "TW"
 ]
 
 const format = [
