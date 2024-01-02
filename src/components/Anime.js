@@ -3,25 +3,30 @@ import { LiaClosedCaptioning } from 'react-icons/lia';
 import { AnimeResponse } from '../api/AnimeResponse'
 import { Link, useLocation } from 'react-router-dom';
 import AnimeInfo from './AnimeInfo';
+import PagingButton from './PagingButton';
+import { useMemo } from 'react';
 
 function Anime({fetchType,title,query,data}) {
   const [animeData, setAnimeData] = useState(null)
   const location = useLocation()
+  const searchParams = useMemo(()=>{
+    return new URLSearchParams(location.search)
+  },[location.search])
+  console.log(searchParams)
   useEffect(()=>{
     const fetchData = async () => {
       try {
-        if(fetchType === 'search') setAnimeData({results: data})
+        if(fetchType === 'search') setAnimeData({results: data?.results, pageInfo: data?.pageInfo})
         else{
-          const { results } = await AnimeResponse({ src: fetchType, query: query });
-          setAnimeData({ results });
+          const { results,pageInfo } = await AnimeResponse({ src: fetchType, query: `${query}&${searchParams}` });
+          setAnimeData({ results,pageInfo });
         }
       } catch (error) {
         console.error('Error fetching anime data:', error.message);
       }
     };
     fetchData()
-  },[fetchType, query,data])
-  console.log(animeData)
+  },[fetchType, query,data,searchParams])
   return (
     <div className='p-4'>
       <div className='flex justify-between text-zinc-300' key='nav'>
@@ -57,6 +62,9 @@ function Anime({fetchType,title,query,data}) {
           })
         }
       </div>
+      {
+        animeData && <PagingButton key='page' pageInfo={animeData?.pageInfo} />
+      }
     </div>
   )
 }

@@ -454,6 +454,9 @@ video {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
+.block {
+  display: block;
+}
 .flex {
   display: flex;
 }
@@ -591,6 +594,9 @@ video {
 .p-4 {
   padding: 1rem;
 }
+.p-3 {
+  padding: 0.75rem;
+}
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -645,6 +651,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(212 212 216 / var(--tw-text-opacity));
 }
+.text-zinc-400 {
+  --tw-text-opacity: 1;
+  color: rgb(161 161 170 / var(--tw-text-opacity));
+}
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -663,6 +673,46 @@ video {
 }
 
 /* Your custom styles go here */
+
+.\*\:flex > * {
+  display: flex;
+}
+
+.\*\:h-\[42px\] > * {
+  height: 42px;
+}
+
+.\*\:h-\[50px\] > * {
+  height: 50px;
+}
+
+.\*\:w-3 > * {
+  width: 0.75rem;
+}
+
+.\*\:w-8 > * {
+  width: 2rem;
+}
+
+.\*\:w-\[42px\] > * {
+  width: 42px;
+}
+
+.\*\:w-\[50px\] > * {
+  width: 50px;
+}
+
+.\*\:items-center > * {
+  align-items: center;
+}
+
+.\*\:justify-center > * {
+  justify-content: center;
+}
+
+.\*\:p-3 > * {
+  padding: 0.75rem;
+}
 
 .hover\:bg-slate-700:hover {
   --tw-bg-opacity: 1;
