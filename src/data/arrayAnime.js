@@ -96,6 +96,4 @@ const sort = [
   "FAVOURITES_DESC"
 ]
 
-const isAdult = false
-
-export {genres,years,season,country,format,isAdult,status,sort}
+export {genres,years,season,country,format,status,sort}

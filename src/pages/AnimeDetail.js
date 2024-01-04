@@ -13,22 +13,30 @@ function AnimeDetail() {
   const [animeRecommend, setAnimeRecommend] = useState(null)
   useEffect(()=>{
     const fetchData = async() =>{
+      console.log(ep)
       const episodeAnime = await AnimeResponse({src:'episode/',id})
-      if(ep === undefined) navigate(episodeAnime.episodes[0].id)
+      setAnimeEpisode({episodeAnime: episodeAnime?.episodes})
+      if (ep === undefined) {
+        const newUrl = `/anime/${id}/${episodeAnime.episodes[0].id}`;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+        navigate(newUrl)
+      }
       const infoAnime = await AnimeResponse({src:'info/',id})
       const recommendations = await AnimeResponse({src: 'recommendations/',id})
       setAnimeRecommend({recommendAnime: recommendations?.results})
       setAnimeData({infoAnime: infoAnime?.infoAnime})
-      setAnimeEpisode({episodeAnime: episodeAnime?.episodes})
     }
     fetchData()
+    return () =>{
+      console.log('a')
+    }
   },[id,navigate,ep])
   const createMarkup = (content) => {
     return { __html: content };
   };
   return (
     <>
-      <div className='flex overflow-x-clip gap-3 justify-between bg-slate-950 text-white p-2'>
+      <div className='flex overflow-x-clip gap-3 justify-between bg-slate-950 text-white'>
         <div className='flex w-3/4 flex-col'>
           <AnimeStream id={ep}/>
           <div className='grid grid-cols-3'>

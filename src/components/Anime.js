@@ -1,35 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState  } from 'react'
 import { LiaClosedCaptioning } from 'react-icons/lia';
 import { AnimeResponse } from '../api/AnimeResponse'
 import { Link, useLocation } from 'react-router-dom';
 import AnimeInfo from './AnimeInfo';
 import PagingButton from './PagingButton';
-import { useMemo } from 'react';
+import NotFound from '../pages/NotFound';
+import { AnimeSearch } from '../api/AnimeSearch';
 
-function Anime({fetchType,title,query,data}) {
+function Anime({fetchType,title,query,searchParams}) {
   const [animeData, setAnimeData] = useState(null)
   const location = useLocation()
-  const searchParams = useMemo(()=>{
-    return new URLSearchParams(location.search)
-  },[location.search])
-  console.log(searchParams)
+  searchParams = useMemo(()=>new URLSearchParams(location.search),[location.search])
   useEffect(()=>{
+    let isMounted = true;
+    console.log(searchParams)
     const fetchData = async () => {
       try {
-        if(fetchType === 'search') setAnimeData({results: data?.results, pageInfo: data?.pageInfo})
-        else{
-          const { results,pageInfo } = await AnimeResponse({ src: fetchType, query: `${query}&${searchParams}` });
-          setAnimeData({ results,pageInfo });
+        let res;
+        if(!fetchType){
+          res = await AnimeSearch(searchParams) 
+        }else{
+          res = await AnimeResponse({ src: fetchType, query: `${query}&${searchParams}` });
         }
+        if(isMounted) setAnimeData({ results : res.results,pageInfo : res.pageInfo });
       } catch (error) {
         console.error('Error fetching anime data:', error.message);
       }
     };
     fetchData()
-  },[fetchType, query,data,searchParams])
+    return () =>{
+      isMounted = false
+    }
+  },[fetchType, query,searchParams])
   return (
     <div className='p-4'>
-      <div className='flex justify-between text-zinc-300' key='nav'>
+      <div className='flex justify-between text-zinc-300 p-2' key='nav'>
         <h2>{title}</h2>
         {
           location.pathname === '/' && <Link to={fetchType}>View All</Link>
@@ -63,7 +68,7 @@ function Anime({fetchType,title,query,data}) {
         }
       </div>
       {
-        animeData && <PagingButton key='page' pageInfo={animeData?.pageInfo} />
+        (location.pathname !== '/' &&  animeData && animeData?.pageInfo?.total !== 0 && <PagingButton key='page' searchParams={searchParams} pageInfo={animeData?.pageInfo} />) || <NotFound/>
       }
     </div>
   )
