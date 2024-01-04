@@ -8,7 +8,7 @@ function AnimeInfo({animeInfo}) {
     return { __html: content };
   };
   return (
-    <div data-format={type || format} className='box-border transition duration-300 format format:p-2 pt-7 pb-4 px-3 hidden group-hover:grid grid-cols-auto bg-gray-800 absolute left-44 z-20 w-80 top-10'>
+    <div data-format={type || format} className='box-border transition duration-300 format format:p-2 pt-7 pb-4 px-3 hidden md:group-hover:grid grid-cols-auto bg-gray-800 absolute left-44 z-20 w-80 top-10'>
       <h3>{romaji}</h3>
       <h4 className='truncate'>{romaji};{english}</h4>
       <br />

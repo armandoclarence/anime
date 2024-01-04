@@ -13,7 +13,6 @@ function Anime({fetchType,title,query,searchParams}) {
   searchParams = useMemo(()=>new URLSearchParams(location.search),[location.search])
   useEffect(()=>{
     let isMounted = true;
-    console.log(searchParams)
     const fetchData = async () => {
       try {
         let res;
@@ -42,10 +41,11 @@ function Anime({fetchType,title,query,searchParams}) {
       </div>
       <div key='cards' className='grid grid-cols-auto grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:grid-cols-5 sm:grid-cols-4 content-center items-strech'>
         {
+          animeData &&
           animeData?.results.map((res,i)=>{
             const {id,format,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode} = res
             return (
-              <Link to={`../anime/${id}`} key={i} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
+              <Link to={`../anime/${id}`} key={i} data-format={type || format} className='format relative cursor-pointer group bg-black transition ease-in duration-300 text-zinc-300'>
                 <div className='overflow-clip'>
                   <img src={large} className='object-cover transition group-hover:scale-105 lg:w-52 w-80 h-64 sm:w-60 lg:h-56' alt={english || romaji} />
                 </div>

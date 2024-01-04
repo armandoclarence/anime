@@ -4,7 +4,8 @@ import 'video.js/dist/video-js.css';
 import './style/video.css'
 import videojs from 'video.js'
 
-function AnimeStream({id}) {
+function AnimeStream({poster,id}) {
+  console.log(poster)
   useEffect(()=>{
     const fetchData = async() =>{
       let player = videojs('anime-video')
@@ -29,7 +30,7 @@ function AnimeStream({id}) {
   return (
     <>
       {
-        <video id='anime-video' height='480' width='720' preload='auto'/>
+        <video poster={poster} id='anime-video' width='720px' height='480px' preload='auto' data-setup='{}'/>
       }
     </>
   )

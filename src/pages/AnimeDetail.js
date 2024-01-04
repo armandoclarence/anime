@@ -38,7 +38,7 @@ function AnimeDetail() {
     <>
       <div className='flex overflow-x-clip gap-3 justify-between bg-slate-950 text-white'>
         <div className='flex w-3/4 flex-col'>
-          <AnimeStream id={ep}/>
+          <AnimeStream poster={animeData?.infoAnime?.bannerImage} id={ep}/>
           <div className='grid grid-cols-3'>
             {animeData?.infoAnime && 
               (()=>{

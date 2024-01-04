@@ -31,24 +31,10 @@ function AnimeFilter() {
   }
 
   const handleArrayChange = (arr, value) => {
-    setSearchParams((prevParams) => {
-      const existingArray = prevParams.getAll(arr);
-      const updatedArray = existingArray.includes(value)
-        ? existingArray.filter((item) => item !== value)
-        : [...existingArray, value];
-      console.log(`arr: ${arr},value: ${value}, existingArray: ${existingArray}, updatedArray: ${updatedArray}`)
-      // Remove all occurrences of the key
-      const newSearchParams = new URLSearchParams(prevParams.toString());
-      newSearchParams.delete(arr);
-  
-      // Add the updated array to the parameters
-      updatedArray.forEach((item) => newSearchParams.append(arr, item));
-  
-      // Update the filter state
-      setFilter((prevFilter) => ({ ...prevFilter, [arr]: updatedArray }));
-  
-      return newSearchParams;
-    });
+    setFilter(prevFilter=>{
+      console.log(prevFilter)
+      return {...prevFilter,[arr]:[...prevFilter[arr],value]}
+    })
   };
     
 
@@ -75,8 +61,8 @@ function AnimeFilter() {
             {
               genres.map(genre=>(
                 <li className='hover:bg-slate-700 w-full flex pl-2' key={genre}>
-                  <input className='cursor-pointer' type="checkbox" onClick={()=>handleArrayChange('genre',genre)} checked={filter['genre'].includes(genre)} name={genre} id={genre} />
-                  <label className='w-full cursor-pointer' htmlFor={genre}>{genre}</label>
+                  <input className='cursor-pointer pl-2' type="checkbox" onClick={()=>handleArrayChange('genre',genre)} readOnly name={genre} id={genre} />
+                  <label className='w-full pl-2 cursor-pointer' htmlFor={genre}>{genre}</label>
                 </li>
               ))
             }

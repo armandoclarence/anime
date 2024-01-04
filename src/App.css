@@ -1,4 +1,6 @@
-@tailwind base;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 .format::before {
   content: attr(data-format);
   background-color: #374151;
