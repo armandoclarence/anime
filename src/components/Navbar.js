@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 function Navigation() {
   return (
     <>
-      <header className='flex px-3 bg-blue-300 justify-between items-center'>
+      <header className='flex px-3 text-slate-900 bg-blue-300 justify-between items-center'>
         <h2>
           ANILIST Unofficial
         </h2>
-        <nav>
+        <nav >
           <ul className='flex items-center mx-3 gap-2'>
             <li className='hover:text-blue-500'>
               <NavLink to='/'>Home</NavLink>

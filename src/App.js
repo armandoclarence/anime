@@ -22,7 +22,11 @@ function App() {
               <Home>
                 <React.Suspense fallback='Loading ...'>
                   <LazyAnime fetchType='schedule' title='Scheduled Anime' query='limit=14'/>
+                </React.Suspense>
+                <React.Suspense fallback='Loading ...'>
                   <LazyAnime fetchType='popular' title='Popular Anime' query='limit=7'/>
+                </React.Suspense>
+                <React.Suspense fallback='Loading ...'>
                   <LazyAnime fetchType='trending' title='Trending Anime' query='limit=7'/>
                 </React.Suspense>
               </Home>
