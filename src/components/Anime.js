@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState  } from 'react'
+import { useEffect, useMemo, useState  } from 'react'
 import { LiaClosedCaptioning } from 'react-icons/lia';
 import { AnimeResponse } from '../api/AnimeResponse'
 import { Link, useLocation } from 'react-router-dom';
@@ -53,7 +53,7 @@ function Anime({fetchType,title,query,searchParams}) {
             return (
               <Link onMouseOver={handleHover} onMouseLeave={handleMouseLeave} to={`../anime/${id}`} key={i} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
                 <div className='overflow-clip'>
-                  <img src={large} className='object-cover transition group-hover:scale-105' alt={english || romaji} />
+                  <img width="220" height="300" src={large} className='object-cover transition group-hover:scale-105' alt={english || romaji} />
                 </div>
                 <div className='text-white flex items-center justify-center'>
                   {(episode || episodes) &&

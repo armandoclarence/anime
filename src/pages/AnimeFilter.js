@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Anime from '../components/Anime'
 import {genres,years,season,country,format,status,sort} from '../data/arrayAnime'
@@ -35,17 +35,18 @@ function AnimeFilter() {
       console.log(prevFilter)
       return {...prevFilter,[arr]:[...prevFilter[arr],value]}
     })
+    setSearchParams({...filter,[arr]:[...filter[arr],value]})
   };
     
 
   return (
-    <div className='text-zinc-300 px-2'>
+    <div className='text-[#D9D9D9] px-2'>
       <h3>Filter Anime</h3>
-      <ul className="grid grid-cols-5 gap-2 pb-3">
-        <li className='h-8 bg-zinc-600 hover:bg-slate-800'>
-          <input className='w-full h-8' type="text" placeholder="Search Anime..." value={searchParams.get('title') || ''} onChange={(e)=>handleInputChange(e)} />
+      <ul className="grid grid-cols-5 gap-2 *:bg-[#303030] *:cursor-pointer pb-3">
+        <li className='h-8 hover:bg-slate-800 text-black'>
+          <input className='w-full h-8 placeholder:text-[#D6D6D6] text-[#D6D6D6] bg-[#1C313F]' type="text" placeholder="Search Anime..." value={searchParams.get('title') || ''} onChange={(e)=>handleInputChange(e)} />
         </li>
-        <li className='group w-full focus-within:visible h-8 bg-zinc-600 hover:bg-slate-800 cursor-pointer'>
+        <li className='group w-full focus-within:visible h-8 hover:bg-slate-800'>
           <button className='w-full h-8'>Type</button>
           <ul className='absolute hidden group-hover:block z-10 w-64 bg-zinc-700'>
             {
@@ -55,20 +56,20 @@ function AnimeFilter() {
             }
           </ul>
         </li>
-        <li className='group w-full h-8 bg-zinc-600 hover:bg-slate-800 cursor-pointer'>
+        <li className='group w-full h-8 hover:bg-slate-800'>
           <button className='w-full h-8'>Genre</button>
           <ul className='absolute grid-cols-4 hidden group-hover:grid z-10 w-1/3 bg-zinc-700'>
             {
               genres.map(genre=>(
                 <li className='hover:bg-slate-700 w-full flex pl-2' key={genre}>
                   <input className='cursor-pointer pl-2' type="checkbox" onClick={()=>handleArrayChange('genre',genre)} readOnly name={genre} id={genre} />
-                  <label className='w-full pl-2 cursor-pointer' htmlFor={genre}>{genre}</label>
+                  <label className='w-full pl-2' htmlFor={genre}>{genre}</label>
                 </li>
               ))
             }
           </ul>
         </li>
-        <li className='group w-full h-8 bg-zinc-600 hover:bg-slate-800 cursor-pointer'>
+        <li className='group w-full h-8 hover:bg-slate-800'>
           <button className='w-full h-8'>Year</button>
           <ul className='absolute hidden group-hover:grid grid-cols-4 z-10 w-1/3 bg-zinc-700'>
             {
@@ -78,7 +79,7 @@ function AnimeFilter() {
             }
           </ul>
         </li>
-        <li className='group w-full h-8 bg-zinc-600 hover:bg-slate-800 cursor-pointer'>
+        <li className='group w-full h-8 hover:bg-slate-800'>
           <button className='w-full h-8'>Status</button>
           <ul className='absolute hidden group-hover:block z-10 w-64 bg-zinc-700'>
             {
@@ -88,7 +89,7 @@ function AnimeFilter() {
             }
           </ul>
         </li>
-        <li className='group w-full h-8 bg-zinc-600 hover:bg-slate-800 cursor-pointer'>
+        <li className='group w-full h-8 hover:bg-slate-800'>
           <button className='w-full h-8'>Country</button>
           <ul className='absolute hidden group-hover:block z-10 w-64 bg-zinc-700'>
             {
@@ -98,7 +99,7 @@ function AnimeFilter() {
             }
           </ul>
         </li>
-        <li className='group w-full h-8 bg-zinc-600 hover:bg-slate-800 cursor-pointer'>
+        <li className='group w-full h-8 hover:bg-slate-800'>
           <button className='w-full h-8'>Season</button>
           <ul className='absolute hidden group-hover:block z-10 w-64 bg-zinc-700'>
             {
@@ -108,7 +109,7 @@ function AnimeFilter() {
             }
           </ul>
         </li>
-        <li className='group w-full h-8 bg-zinc-600 hover:bg-slate-800 cursor-pointer'>
+        <li className='group w-full h-8 hover:bg-slate-800'>
           <button className='w-full h-8'>Sorting</button>
           <ul className='absolute hidden group-hover:block z-10 w-64 bg-zinc-700'>
             {
@@ -121,12 +122,12 @@ function AnimeFilter() {
             }
           </ul>
         </li>
-        <li className='group w-full h-8 bg-zinc-600 focus:outline-black hover:bg-slate-800 cursor-pointer'>
+        <li className='group w-full h-8 focus:outline-black hover:bg-slate-800'>
           <button className='w-full h-8' onClick={() =>handleSingleChange('isAdult',isAdult)}>
             isAdult
           </button>
         </li>
-        <li className='group w-full h-8 hover:text-zinc-300 text-slate-500 font-bold bg-zinc-300 hover:bg-slate-800 cursor-pointer'>
+        <li className='group w-full h-8 hover:text-zinc-300 text-[#303030] font-bold bg-zinc-300 hover:bg-slate-800'>
           <button className='w-full h-8'>Filter</button>
         </li>
       </ul>

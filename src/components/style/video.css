@@ -2,6 +2,10 @@
   display: block !important;
 }
 
+.vjs-svg-icon {
+  display: none;
+}
+
 #anime-video {
   position: relative;
   padding: 0;

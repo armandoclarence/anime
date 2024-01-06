@@ -1,5 +1,4 @@
-import React from 'react'
-import { useParams,NavLink } from 'react-router-dom'
+import { useParams, NavLink } from 'react-router-dom'
 
 function ButtonEpisode({id,number}) {
   const params = useParams()

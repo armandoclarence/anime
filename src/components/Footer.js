@@ -1,8 +1,7 @@
-import React from 'react'
 import { LiaCopyright } from 'react-icons/lia'
 function Footer() {
   return (
-    <footer className='text-zinc-300 py-4 bg-slate-600'>
+    <footer className='text-zinc-300 z-20 py-4 pl-3 fixed left-0 right-0 bottom-0 bg-stone-800'>
       <div className="flex flex-col">
         <h2>
           ANILIST Unofficial

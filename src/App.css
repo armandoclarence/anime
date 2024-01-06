@@ -22,7 +22,8 @@
   font-weight: bold;
 }
 
-.active[id] {
+div > .active {
+  color: rgb(147 197 253);
   background: white;
 }
 

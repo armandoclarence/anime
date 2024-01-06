@@ -1,4 +1,3 @@
-import React from 'react'
 import {LiaClosedCaptioning,LiaStar} from 'react-icons/lia'
 
 function AnimeInfo({animeInfo,isHovered}) {

@@ -1,4 +1,3 @@
-import React from 'react'
 import {LiaClosedCaptioning} from 'react-icons/lia'
 import { Link } from 'react-router-dom'
 
@@ -12,7 +11,7 @@ function AnimeRecommend({recommend}) {
             const {id,title:{romaji,english},format,episodes,coverImage:{medium}} = res
             return (
               <Link to={`../anime/${id}`} className='flex gap-2 bg-slate-700' key={id}>
-                <img src={medium} alt={english||romaji} />
+                <img width='100' height='142' src={medium} alt={english||romaji} />
                 <div className="flex flex-col justify-center">
                   <h3>{english || romaji}</h3>
                   <div className="flex">
