@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { AnimeResponse } from '../api/AnimeResponse'
-import 'video.js/dist/video-js.css';
 import './style/video.css'
 const videojs = import('video.js')
 

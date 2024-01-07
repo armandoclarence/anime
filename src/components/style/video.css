@@ -2,7 +2,7 @@
   display: block !important;
 }
 
-.vjs-svg-icon {
+#anime-video > * {
   display: none;
 }
 
