@@ -57,17 +57,29 @@ while(currentYear >= endYear){
 }
 
 const season = [
-  "SPRING",
-  "SUMMER",
-  "FALL",
-  "WINTER"
+  {Spring:"SPRING"},
+  {Summer:"SUMMER"},
+  {Fall:"FALL"},
+  {Winter:"WINTER"}
 ]
 
 const country = [
-  "JP",
-  "CN",
-  "KR",
-  "TW"
+  {
+    region:"Japan",
+    code:"JP"
+  },
+  {
+    region:"China",
+    code:"CN"
+  },
+  {
+    region:"Korea",
+    code:"KR"
+  },
+   {
+    region:"Taiwan",
+    code:"TW"
+  },
 ]
 
 const format = [

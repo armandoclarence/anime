@@ -49,7 +49,7 @@ function PagingButton({pageInfo,searchParams}) {
     return pageLinks;
   };
   return (
-    <div key='page' className='flex box-border *:flex *:items-center *:justify-center *:p-3 justify-center items-center *:w-[50px] *:h-[50px] text-zinc-400 '>
+    <div key='page' className='flex box-border pt-4 *:flex *:items-center *:justify-center *:p-3 justify-center items-center *:w-[50px] *:h-[50px] text-zinc-400 '>
       {renderPageLinks()}
     </div>
   )

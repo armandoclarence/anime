@@ -6,10 +6,10 @@ export const AnimeSearch = async ( search) => {
   const seasonAnime = search.get('seasonAnime') || ''
   const statusAnime = search.get('statusAnime') || ''
   const isAdult = search.get('isAdult') === 'true';
-  const type = search.get('type') || ''
+  const type = search.get('type') ? search.get('type').split(',').map(type => type.trim()) : ''
   const region = search.get('region') || ''
   const genre = search.get('genre') ? search.get('genre').split(',').map(genre => genre.trim()) : '';
-  const sorting = search.get('sorting') ? search.get('sorting').split(',').map(sortItem => sortItem.trim()) : '';
+  const sorting = search.get('sorting') ? search.get('sorting').split(',').map(sorting => sorting.trim()) : '';
   const p = search.get('p') || ''
   try {
     const requestData = {
@@ -18,7 +18,7 @@ export const AnimeSearch = async ( search) => {
       seasonYear: year,
       status: statusAnime,
       season: seasonAnime,
-      isAdult: isAdult,
+      nsfw: isAdult,
       format: type,
       genres: genre,
       sort: sorting,
@@ -32,6 +32,7 @@ export const AnimeSearch = async ( search) => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const response = await axios.post(`${baseUrl}/search`,filteredRequestData);
     const { data:{pageInfo,results} } = response;
+    console.log(results)
     return {
       pageInfo: pageInfo,
       results: results

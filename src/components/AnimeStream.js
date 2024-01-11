@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { AnimeResponse } from '../api/AnimeResponse'
 import './style/video.css'
-const videojs = import('video.js')
+import videojs from 'video.js'
 
 function AnimeStream({poster,id}) {
   console.log(poster)

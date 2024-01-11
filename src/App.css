@@ -30,3 +30,15 @@ div > .active {
 .format\:p-2::before {
   left: .75em;
 }
+
+body {
+  margin: 0;
+  font-family: system-ui;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #020617;
+}
+
+#root {
+  min-height: 100vh;
+}

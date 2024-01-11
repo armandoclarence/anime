@@ -19,17 +19,13 @@ function App() {
           <Navbar/>
           <Routes>
             <Route index element={
-              <Home>
-                <React.Suspense fallback='Loading ...'>
-                  <LazyAnime fetchType='schedule' title='Scheduled Anime' query='limit=14'/>
-                </React.Suspense>
-                <React.Suspense fallback='Loading ...'>
-                  <LazyAnime fetchType='popular' title='Popular Anime' query='limit=7'/>
-                </React.Suspense>
-                <React.Suspense fallback='Loading ...'>
-                  <LazyAnime fetchType='trending' title='Trending Anime' query='limit=7'/>
-                </React.Suspense>
-              </Home>
+                <Home>
+                  <React.Suspense fallback='Loading ...'>
+                    <LazyAnime fetchType='schedule' title='Scheduled Anime' query='limit=14'/>
+                    <LazyAnime fetchType='popular' title='Popular Anime' query='limit=7'/>
+                    <LazyAnime fetchType='trending' title='Trending Anime' query='limit=7'/>
+                  </React.Suspense>
+                </Home>
               }
             />
             <Route path='about' element={<About/>}/>
@@ -53,7 +49,7 @@ function App() {
             <Route path='schedule' element={
               <Schedule>
                 <React.Suspense fallback='Loading ...'>
-                  <LazyAnime fetchType='schedule' title='Schedule Anime' query='limit=28'/>
+                    <LazyAnime fetchType='schedule' title='Schedule Anime' query='limit=28'/>
                 </React.Suspense>
               </Schedule>
             } />

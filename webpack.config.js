@@ -1,21 +1,43 @@
 const CompressionPlugin = require('compression-webpack-plugin');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const path = require('path');
 module.exports = {
   // other webpack configuration...
-  mode: 'production',
+  mode: 'development',
   optimization: {
     usedExports: true,
   },
   plugins: [
     new CompressionPlugin(),
+    new TerserPlugin(),
     // other plugins...
-    new ImageMinimizerPlugin({
-      minimizer: [
-        ['imagemin-gifsicle', { interlaced: true }],
-        ['imagemin-mozjpeg', { quality: 80 }],
-        ['imagemin-pngquant', { quality: [0.6, 0.8] }],
-        ['imagemin-svgo', { plugins: [{ removeViewBox: false }] }],
-      ],
-    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      reportFilename: 'bundle-report.html',
+      openAnalyzer:false,
+    })
   ],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+    ],
+  },
 };

@@ -1,6 +1,6 @@
 import {LiaClosedCaptioning,LiaStar} from 'react-icons/lia'
 
-function AnimeInfo({animeInfo,isHovered}) {
+function AnimeInfo({animeInfo}) {
   const {format,status,type,title:{english,romaji},genres,episode,rating,nextAiringEpisode,episodes,averageScore,description,releaseDate,seasonYear} = animeInfo
   const statusText = (status || 'RELEASING').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
   const createMarkup = (content) => {
@@ -19,7 +19,7 @@ function AnimeInfo({animeInfo,isHovered}) {
         <div className='text-white flex items-center justify-center'>
           {(episode || episodes) &&
           <div className='flex items-center bg-slate-600'>
-            <LiaClosedCaptioning  />
+            <LiaClosedCaptioning aria-label='caption' />
               {nextAiringEpisode?.episode || episode || episodes}
           </div>
           }

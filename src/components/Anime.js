@@ -25,7 +25,7 @@ function Anime({fetchType,title,query,searchParams}) {
         }
         setAnimeData({ results : res.results,pageInfo : res.pageInfo });
       } catch (error) {
-        console.error('Error fetching anime data:', error.message);
+        console.error('<Er></Er>ror fetching anime data:', error.message);
       }
     };
     fetchData()
@@ -39,22 +39,22 @@ function Anime({fetchType,title,query,searchParams}) {
         }
       </div>
       <div key='cards' className='grid grid-cols-auto grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:grid-cols-5 sm:grid-cols-4 content-center items-stretch'>
-      {animeData?.results.map((res,i)=>{
-        const {id,format,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode} = res
+      {animeData?.results?.map((res,i)=>{
+        const {id,format,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode, nextAir} = res
         return (
-          <a href={`/anime/${id}`} key={i} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
+          <a href={`/anime/${id}`} key={id} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
             <div className='overflow-clip'>
-              <img width='164' height='227' src={large} alt={english || romaji} className='object-cover transition group-hover:scale-105' />
+              <img width='164' height='230' loading='lazy'  src={large} alt={english || romaji} className='object-cover transition group-hover:scale-105' />
             </div>
             <div className='text-white flex items-center justify-center'>
               {(episode || episodes) &&
               <div className='flex items-center bg-slate-600'>
-                <LiaClosedCaptioning  />
-                  {nextAiringEpisode?.episode || episode || episodes}
+                <LiaClosedCaptioning aria-label='caption' />
+                  {nextAir?.episode || nextAiringEpisode?.episode || episode || episodes}
               </div>
               }
               <div className='bg-zinc-700'>
-                {episodes || nextAiringEpisode?.episode}
+                {episodes || nextAir?.episode || nextAiringEpisode?.episode}
               </div>
             </div>
             <h3 className='text-[#c4c4c4] text-center group-hover:text-slate-100 text-ellipsis line-clamp-2'>{english || romaji}</h3>
@@ -64,7 +64,7 @@ function Anime({fetchType,title,query,searchParams}) {
       })}
       </div>
       {
-        (location.pathname !== '/' && animeData && animeData?.pageInfo?.total !== 0 && <PagingButton key='page' searchParams={searchParams} pageInfo={animeData?.pageInfo} />) || (!searchParams && <NotFound/>)
+        (location.pathname !== '/' && animeData?.pageInfo && animeData?.pageInfo?.total !== 0 && <PagingButton key='page' searchParams={searchParams} pageInfo={animeData?.pageInfo} />) || (!searchParams && <NotFound/>)
       }
     </div>
   )
