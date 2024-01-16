@@ -27,9 +27,6 @@ function AnimeDetail() {
       setAnimeData({infoAnime: infoAnime?.infoAnime})
     }
     fetchData()
-    return () =>{
-      console.log('a')
-    }
   },[id,navigate,ep])
   const createMarkup = (content) => {
     return { __html: content };

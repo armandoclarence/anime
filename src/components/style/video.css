@@ -1,14 +1,10 @@
 .vjs-big-play-button, .vjs-controls-disabled .vjs-control-bar {
+  all:unset;
   display: block !important;
-}
-
-#anime-video > * {
-  display: none;
 }
 
 #anime-video {
   position: relative;
-  padding: 0;
   width: 100%;
 }
 

@@ -57,55 +57,126 @@ while(currentYear >= endYear){
 }
 
 const season = [
-  {Spring:"SPRING"},
-  {Summer:"SUMMER"},
-  {Fall:"FALL"},
-  {Winter:"WINTER"}
+  {
+    seasonAnime:"Winter",
+    code:"WINTER"
+  },
+  {
+    seasonAnime:"Spring",
+    code:"SPRING"
+  },
+  {
+    seasonAnime:"Summer",
+    code:"SUMMER"
+  },
+   {
+    seasonAnime:"Fall",
+    code:"FALL"
+  },
 ]
 
 const country = [
   {
-    region:"Japan",
-    code:"JP"
+    region: "Japan",
+    code: "JP"
   },
   {
-    region:"China",
-    code:"CN"
+    region: "China",
+    code: "CN"
   },
   {
-    region:"Korea",
-    code:"KR"
+    region: "South Korea",
+    code: "KR"
   },
    {
-    region:"Taiwan",
-    code:"TW"
+    region: "Taiwan",
+    code: "TW"
   },
 ]
 
 const format = [
-  "TV",
-  "TV_SHORT",
-  "MOVIE",
-  "OVA",
-  "ONA",
-  "SPECIAL",
-  "MUSIC"
+  {
+    type: "TV SHOW",
+    code: "TV"
+  },
+  {
+    type: "TV SHORT",
+    code: "TV_SHORT"
+  },
+  {
+    type: "Movie",
+    code: "MOVIE"
+  },
+  {
+    type: "OVA",
+    code: "OVA"
+  },
+  {
+    type: "ONA",
+    code: "ONA"
+  },
+  {
+    type: "Special",
+    code: "SPECIAL"
+  },
+  {
+    type: "Music",
+    code: "MUSIC"
+  },
 ]
 
 const status = [
-  "FINISHED",
-  "RELEASING",
-  "NOT_YET_RELEASED"
+  {
+    statusAnime: "Airing",
+    code: "RELEASING"
+  },
+  {
+    statusAnime: "Finished",
+    code: "FINISHED"
+  },
+  {
+    statusAnime: "Not Yet Aired",
+    code: "NOT_YET_RELEASED"
+  },
+  {
+    statusAnime: "Cancelled",
+    code: "CANCELLED"
+  },
 ]
 
 const sort = [
-  "TITLE_ROMAJI",
-  "END_DATE_DESC",
-  "SCORE_DESC",
-  "TRENDING_DESC",
-  "EPISODES_DESC",
-  "UPDATED_AT_DESC",
-  "FAVOURITES_DESC"
+  {
+    sortAnime: "Title",
+    code: "TITLE_ROMAJI"
+  },
+  {
+    sortAnime: "Date Added", 
+    code: "ID_DESC",
+  },
+  {
+    sortAnime: "Popularity",
+    code: "POPULARITY_DESC"
+  },
+  {
+    sortAnime: "Average Score",
+    code: "SCORE_DESC",
+  },
+  {
+    sortAnime: "Trending",
+    code: "TRENDING_DESC",
+  },
+  {
+    sortAnime: "Most Episodes",
+    code: "EPISODES_DESC",
+  },
+  {
+    sortAnime: "Favorites",
+    code: "FAVOURITES_DESC"
+  },
+  {
+    sortAnime: "Release Date",
+    code: "START_DATE_DESC"
+  }
 ]
 
 export {genres,years,season,country,format,status,sort}

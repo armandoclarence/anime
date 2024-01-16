@@ -8,7 +8,7 @@ import NotFound from '../pages/NotFound';
 import { AnimeSearch } from '../api/AnimeSearch';
 import { useMemo } from 'react';
 
-function Anime({fetchType,title,query,searchParams}) {
+function Anime({fetchType,title,query,searchParams,setFilter}) {
   const [animeData, setAnimeData] = useState(null)
   const location = useLocation()
 
@@ -38,13 +38,13 @@ function Anime({fetchType,title,query,searchParams}) {
           location.pathname === '/' && <a href={fetchType}>View All</a>
         }
       </div>
-      <div key='cards' className='grid grid-cols-auto grid-cols-2 gap-2 lg:grid-cols-7 lg:gap-7 md:grid-cols-5 sm:grid-cols-4 content-center items-stretch'>
-      {animeData?.results?.map((res,i)=>{
+      <div key='cards' className='grid grid-cols-[repeat(auto-fill,164px)] gap-2 justify-between content-center items-stretch'>
+      {animeData?.results?.map((res)=>{
         const {id,format,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode, nextAir} = res
         return (
           <a href={`/anime/${id}`} key={id} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
-            <div className='overflow-clip'>
-              <img width='164' height='230' loading='lazy'  src={large} alt={english || romaji} className='object-cover transition group-hover:scale-105' />
+            <div className='overflow-clip h-64'>
+              <img width='164' height='256' src={large} alt={english || romaji} className='h-full object-cover transition group-hover:scale-105' />
             </div>
             <div className='text-white flex items-center justify-center'>
               {(episode || episodes) &&

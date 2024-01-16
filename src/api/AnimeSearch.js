@@ -32,7 +32,6 @@ export const AnimeSearch = async ( search) => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const response = await axios.post(`${baseUrl}/search`,filteredRequestData);
     const { data:{pageInfo,results} } = response;
-    console.log(results)
     return {
       pageInfo: pageInfo,
       results: results
