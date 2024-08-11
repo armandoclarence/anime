@@ -4,9 +4,17 @@ export const AnimeResponse = async ({ src,id = '', query = '' }) => {
   try {
     if(id === undefined) return
     const baseUrl = process.env.REACT_APP_BASE_URL;
-    const response = await axios.get(`${baseUrl}/${src}${id}${query?`?${query}`: ''}`);
+    console.log(query)
+    const url = `${baseUrl}/${src ? src : ''}${id}${query.trim() === "" ? '': `?${query}`}`;
+    const response = await axios.get(url);
     const {data} = response
+    console.log(data)
+    console.log(url)
     const {results,episodes,page,stream,pageInfo} = data;
+    if(src === 'schedule/'){
+      const res = data;
+      console.log(res)
+    }
     if(src === 'episode/') {
       return {
         episodes: episodes
@@ -15,10 +23,13 @@ export const AnimeResponse = async ({ src,id = '', query = '' }) => {
       return {
         infoAnime: data
       }
+    }if(src === 'stream/'){
+      return { 
+        streamData : stream
+      }
     }
     return {
       results : results,
-      streamData : stream,
       pageInfo : page || pageInfo
     }
   } catch (e) {

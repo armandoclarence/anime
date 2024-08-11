@@ -17,6 +17,14 @@ function AnimeStream({poster,id}) {
           src: url,
           type: 'application/x-mpegURL', 
         });
+        player.ready(() => {
+          const bigPlayButton = document.querySelector('.vjs-big-play-button');
+          var techElement = player.tech().el();
+          bigPlayButton.addEventListener("click", ()=> {
+            bigPlayButton.classList.add("remove")
+            techElement.setAttribute("controls", true)
+          })
+        });
         player.pause();
       } catch (error) {
         console.error('Error fetching anime data:', error.message);

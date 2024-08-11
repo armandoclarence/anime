@@ -21,7 +21,7 @@ function App() {
             <Route index element={
                 <Home>
                   <React.Suspense fallback='Loading ...'>
-                    <LazyAnime fetchType='schedule' title='Scheduled Anime' query='limit=14'/>
+                    <LazyAnime fetchType='schedule' title='Scheduled Anime' query=''/>
                     <LazyAnime fetchType='popular' title='Popular Anime' query='limit=7'/>
                     <LazyAnime fetchType='trending' title='Trending Anime' query='limit=7'/>
                   </React.Suspense>
@@ -49,7 +49,7 @@ function App() {
             <Route path='schedule' element={
               <Schedule>
                 <React.Suspense fallback='Loading ...'>
-                    <LazyAnime fetchType='schedule' title='Schedule Anime' query='limit=28'/>
+                    <LazyAnime fetchType='schedule' title='Schedule Anime' query=''/>
                 </React.Suspense>
               </Schedule>
             } />

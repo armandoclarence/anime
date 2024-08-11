@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const AnimeSearch = async ( search) => {
+export const AnimeSearch = async (search) => {
   const title = search.get('title') || ''
   const year = search.get('year') || ''
   const seasonAnime = search.get('seasonAnime') || ''
@@ -11,6 +11,7 @@ export const AnimeSearch = async ( search) => {
   const genre = search.get('genre') ? search.get('genre').split(',').map(genre => genre.trim()) : '';
   const sorting = search.get('sorting') ? search.get('sorting').split(',').map(sorting => sorting.trim()) : '';
   const p = search.get('p') || ''
+  console.log(p)
   try {
     const requestData = {
       type: "ANIME",
@@ -23,12 +24,14 @@ export const AnimeSearch = async ( search) => {
       genres: genre,
       sort: sorting,
       countryOfOrigin: region,
-      size: "28",
-      page: p
+      size: 28,
+      page: parseInt(p)
     }
+    console.log(requestData)
     const filteredRequestData = Object.fromEntries(
       Object.entries(requestData).filter(([_, value]) => value !== "" && value !== null)
     );
+    console.log(filteredRequestData)
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const response = await axios.post(`${baseUrl}/search`,filteredRequestData);
     const { data:{pageInfo,results} } = response;

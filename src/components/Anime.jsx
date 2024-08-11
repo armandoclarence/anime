@@ -8,7 +8,7 @@ import NotFound from '../pages/NotFound';
 import { AnimeSearch } from '../api/AnimeSearch';
 import { useMemo } from 'react';
 
-function Anime({fetchType,title,query,searchParams,setFilter}) {
+function Anime({fetchType,title,query,searchParams}) {
   const [animeData, setAnimeData] = useState(null)
   const location = useLocation()
 
@@ -21,15 +21,16 @@ function Anime({fetchType,title,query,searchParams,setFilter}) {
         if(!fetchType){
           res = await AnimeSearch(searchParams) 
         }else{
-          res = await AnimeResponse({ src: fetchType, query: `${query}${searchParams ? `&${searchParams}` : ''}` });
+          res = await AnimeResponse({ src: fetchType, query: `${query}${searchParams.length > 0 ? `&${searchParams}` : ''}` });
         }
         setAnimeData({ results : res.results,pageInfo : res.pageInfo });
       } catch (error) {
-        console.error('<Er></Er>ror fetching anime data:', error.message);
+        console.error('Error fetching anime data:', error.message);
       }
     };
     fetchData()
-  },[fetchType, query,searchParams])
+  },[fetchType, query,searchParams.get("p")])
+  console.log(animeData)
   return (
     <div className='p-4'>
       <div className='flex justify-between text-zinc-300 p-2' key='nav'>

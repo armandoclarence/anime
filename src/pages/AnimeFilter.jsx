@@ -53,6 +53,7 @@ function AnimeFilter() {
   const handleArrayChange = (arr, value) => {
     setFilter((prevFilter)=>{
       const newArray = [...prevFilter[arr]]
+      console.log(newArray)
       const isValueInArray = newArray.includes(value);
       const updatedArray =  isValueInArray
       ? newArray.filter((item) => item !== value)
