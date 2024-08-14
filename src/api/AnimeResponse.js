@@ -7,14 +7,10 @@ export const AnimeResponse = async ({ src,id = '', query = '' }) => {
     console.log(query)
     const url = `${baseUrl}/${src ? src : ''}${id}${query.trim() === "" ? '': `?${query}`}`;
     const response = await axios.get(url);
+    console.log(url)
     const {data} = response
     console.log(data)
-    console.log(url)
     const {results,episodes,page,stream,pageInfo} = data;
-    if(src === 'schedule/'){
-      const res = data;
-      console.log(res)
-    }
     if(src === 'episode/') {
       return {
         episodes: episodes

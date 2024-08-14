@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export const AnimeSearch = async (search) => {
+  for (const [key, value] of search.entries()) {
+    console.log(`${key}: ${value}`);
+}
   const title = search.get('title') || ''
   const year = search.get('year') || ''
   const seasonAnime = search.get('seasonAnime') || ''

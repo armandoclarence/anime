@@ -12,8 +12,7 @@ function Anime({fetchType,title,query,searchParams}) {
   const [animeData, setAnimeData] = useState(null)
   const location = useLocation()
 
-  searchParams = useMemo(()=> new URLSearchParams(location.search),[location.search]) || ''
-
+  searchParams = useMemo(()=>new URLSearchParams(location.search),[location.search])
   useEffect(()=>{
     const fetchData = async () => {
       try {
@@ -21,7 +20,7 @@ function Anime({fetchType,title,query,searchParams}) {
         if(!fetchType){
           res = await AnimeSearch(searchParams) 
         }else{
-          res = await AnimeResponse({ src: fetchType, query: `${query}${searchParams.length > 0 ? `&${searchParams}` : ''}` });
+          res = await AnimeResponse({ src: fetchType, query: `${query}${[...searchParams.entries()].length > 0 ? `&${searchParams.toString()}` : ''}` });
         }
         setAnimeData({ results : res.results,pageInfo : res.pageInfo });
       } catch (error) {
@@ -29,8 +28,7 @@ function Anime({fetchType,title,query,searchParams}) {
       }
     };
     fetchData()
-  },[fetchType, query,searchParams.get("p")])
-  console.log(animeData)
+  },[fetchType, query,searchParams])
   return (
     <div className='p-4'>
       <div className='flex justify-between text-zinc-300 p-2' key='nav'>
@@ -41,11 +39,11 @@ function Anime({fetchType,title,query,searchParams}) {
       </div>
       <div key='cards' className='grid grid-cols-[repeat(auto-fill,164px)] gap-2 justify-between content-center items-stretch'>
       {animeData?.results?.map((res)=>{
-        const {id,format,episode,type,title:{english,romaji},episodes,coverImage:{large},nextAiringEpisode, nextAir} = res
+        const {id, mal_id,format,episode,type,title:{english,romaji},episodes,coverImage, images,nextAiringEpisode, nextAir} = res
         return (
-          <a href={`/anime/${id}`} key={id} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
+          <a href={`/anime/${id || mal_id}`} key={id || mal_id} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
             <div className='overflow-clip h-64'>
-              <img width='164' height='256' src={large} alt={english || romaji} className='h-full object-cover transition group-hover:scale-105' />
+              <img width='164' height='256' src={coverImage?.large || images.webp?.large_image_url} alt={english || romaji} className='h-full object-cover transition group-hover:scale-105' />
             </div>
             <div className='text-white flex items-center justify-center'>
               {(episode || episodes) &&
