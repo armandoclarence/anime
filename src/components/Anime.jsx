@@ -39,11 +39,11 @@ function Anime({fetchType,title,query,searchParams}) {
       </div>
       <div key='cards' className='grid grid-cols-[repeat(auto-fill,164px)] gap-2 justify-between content-center items-stretch'>
       {animeData?.results?.map((res)=>{
-        const {id, mal_id,format,episode,type,title:{english,romaji},episodes,coverImage, images,nextAiringEpisode, nextAir} = res
+        const {id, mal_id, format, episode, type, title, title_english ,episodes, coverImage, images, nextAiringEpisode, nextAir} = res
         return (
           <a href={`/anime/${id || mal_id}`} key={id || mal_id} data-format={type || format} className='format relative cursor-pointer group transition ease-in duration-300 text-zinc-300'>
             <div className='overflow-clip h-64'>
-              <img width='164' height='256' src={coverImage?.large || images.webp?.large_image_url} alt={english || romaji} className='h-full object-cover transition group-hover:scale-105' />
+              <img width='164' height='256' src={coverImage?.large || images.webp?.large_image_url} alt={typeof title === "object" && title !== null ? title?.english || title?.romaji : title || title_english} className='h-full object-cover transition group-hover:scale-105' />
             </div>
             <div className='text-white flex items-center justify-center'>
               {(episode || episodes) &&
@@ -56,11 +56,12 @@ function Anime({fetchType,title,query,searchParams}) {
                 {episodes || nextAir?.episode || nextAiringEpisode?.episode}
               </div>
             </div>
-            <h3 className='text-[#c4c4c4] text-center group-hover:text-slate-100 text-ellipsis line-clamp-2'>{english || romaji}</h3>
+            <h3 className='text-[#c4c4c4] text-center group-hover:text-slate-100 text-ellipsis line-clamp-2'>{typeof title === "object" && title !== null ? title?.english || title?.romaji : title || title_english}</h3>
             <AnimeInfo animeInfo={res} />
           </a> 
-        )
-      })}
+          )
+        })
+      }
       </div>
       {
         (location.pathname !== '/' && animeData?.pageInfo && animeData?.pageInfo?.total !== 0 && <PagingButton key='page' searchParams={searchParams} pageInfo={animeData?.pageInfo} />) || (!searchParams && <NotFound/>)

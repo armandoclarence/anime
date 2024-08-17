@@ -20,7 +20,13 @@ function AnimeStream({poster,id}) {
         player.ready(() => {
           const bigPlayButton = document.querySelector('.vjs-big-play-button');
           var techElement = player.tech().el();
-          bigPlayButton.addEventListener("click", ()=> {
+          bigPlayButton.addEventListener("click", (e)=> {
+            e.preventDefault()
+            bigPlayButton.classList.add("remove")
+            techElement.setAttribute("controls", true)
+          })
+          bigPlayButton.addEventListener("touchstart", (e)=> {
+            e.preventDefault()
             bigPlayButton.classList.add("remove")
             techElement.setAttribute("controls", true)
           })

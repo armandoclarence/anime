@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { FaBars } from "react-icons/fa";
 
 function Navigation() {
   return (
@@ -29,6 +30,8 @@ function Navigation() {
             </li>
           </ul>
         </nav> 
+        <button className="menu-toggle" aria-label="Toggle Nav"></button>
+        <FaBars />
       </header>
     </>
   );

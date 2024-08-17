@@ -33,10 +33,10 @@ function AnimeDetail() {
   };
   return (
     <>
-      <div className='flex overflow-x-clip gap-3 justify-between bg-slate-950 text-white'>
-        <div className='flex w-3/4 flex-col'>
+      <div className='flex overflow-x-clip gap-3 mx-4 justify-between bg-slate-950 text-white'>
+        <div className='flex flex-col'>
           <AnimeStream poster={animeData?.infoAnime?.bannerImage} id={ep}/>
-          <div className='grid grid-cols-3'>
+          <div className='flex gap-3'>
             {animeData?.infoAnime && 
               (()=>{
                 const {coverImage:{large},description,duration,episodes,format,genres,score:{decimalScore},season,status,studios,title:{english,romaji},year} = animeData.infoAnime
@@ -45,16 +45,17 @@ function AnimeDetail() {
                 return (
                   <>
                     <img src={large} alt={english || romaji} />
-                    <span>{format}</span>
-                    <p dangerouslySetInnerHTML={createMarkup(description)} />
-                    <span>Type: {format}</span>
-                    <p>Premiered: {season} {year}</p>
-                    <p>Status: {status}</p>
-                    <span>Duration: {duration}</span>
-                    <p>Studios: {studio}</p>
-                    <p>Rate: {decimalScore}</p>
-                    <p>Episodes: {episodes}</p>
-                    <p>Genre: {genre}</p>
+                    <div>
+                      <p dangerouslySetInnerHTML={createMarkup(description)} />
+                      <span>Type: {format}</span>
+                      <p>Premiered: {season} {year}</p>
+                      <p>Status: {status}</p>
+                      <span>Duration: {duration}</span>
+                      <p>Studios: {studio}</p>
+                      <p>Rate: {decimalScore}</p>
+                      <p>Episodes: {episodes}</p>
+                      <p>Genre: {genre}</p>
+                    </div>
                   </>
                 )
               })()
@@ -67,8 +68,8 @@ function AnimeDetail() {
               })
             }
           </div>
+          <AnimeRecommend recommend={animeRecommend?.recommendAnime} />
         </div>
-        <AnimeRecommend recommend={animeRecommend?.recommendAnime} />
       </div>
     </>
   )
